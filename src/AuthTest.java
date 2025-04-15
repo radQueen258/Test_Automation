@@ -62,5 +62,67 @@ public class AuthTest {
     WebElement submitButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("login-password")));
     submitButton.sendKeys("AkdarNhapulo");
     driver.findElement(By.cssSelector(".mt-5")).click();
+
+    // Wait for login to complete and home page to load
+    wait.until(ExpectedConditions.urlContains("flickr.com"));
+
+    // Add additional wait for page elements to be fully loaded
+    try {
+      Thread.sleep(5000); // Wait for 5 seconds for the page to stabilize
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+
+    // Test name: comment
+    // Step # | name | target | value | comment
+    // 1 | open | / |  |
+    driver.get("https://www.flickr.com/");
+    wait.until(ExpectedConditions.urlToBe("https://www.flickr.com/"));
+    // 2 | setWindowSize | 680x697 |  |
+    driver.manage().window().setSize(new Dimension(680, 697));
+
+    // Wait for the page to adjust to the new window size
+    try {
+      Thread.sleep(5000);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    {
+      WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(By.className("mobile-nav-toggle narrow-viewport-only")));
+      Actions builder = new Actions(driver);
+      builder.moveToElement(element).perform();
+    }
+    // 4 | click | id=yui_3_16_0_1_1744665831786_487 |  |
+    driver.findElement(By.cssSelector("explore no-outline")).click();
+    // 5 | click | id=yui_3_16_0_1_1744665831786_1037 |  |
+    wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("overlay no-outline"))).click();
+    // 6 | mouseOver | css=#yui_3_16_0_1_1744665831786_3139 .overlay |  |
+    {
+      WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#yui_3_16_0_1_1744665831786_3139 .overlay")));
+      Actions builder = new Actions(driver);
+      builder.moveToElement(element).perform();
+    }
+    // 7 | mouseOut | id=yui_3_16_0_1_1744665831786_5192 |  |
+    {
+      WebElement element = driver.findElement(By.tagName("body"));
+      Actions builder = new Actions(driver);
+      builder.moveToElement(element, 0, 0).perform();
+    }
+    // 8 | click | id=yui_3_16_0_1_1744665831786_5307 |  |
+    wait.until(ExpectedConditions.elementToBeClickable(By.id("yui_3_16_0_1_1744665831786_5307"))).click();
+    // 9 | mouseOver | id=yui_3_16_0_1_1744665831786_6529 |  |
+    {
+      WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("yui_3_16_0_1_1744665831786_6529")));
+      Actions builder = new Actions(driver);
+      builder.moveToElement(element).perform();
+    }
+    // 10 | click | id=yui_3_16_0_1_1744665831786_7499 |  |
+    WebElement commentField = wait.until(ExpectedConditions.elementToBeClickable(By.id("yui_3_16_0_1_1744665831786_7499")));
+    commentField.click();
+    // 11 | type | id=yui_3_16_0_1_1744665831786_7499 | Wonderful!! |
+    commentField.sendKeys("Wonderful!!");
+    // 12 | click | id=yui_3_16_0_1_1744665831786_7512 |  |
+    wait.until(ExpectedConditions.elementToBeClickable(By.id("yui_3_16_0_1_1744665831786_7512"))).click();
+
   }
 }
