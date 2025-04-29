@@ -10,9 +10,9 @@ public class TestBase {
         app = new AppManager();
     }
 
-    @After
-    public void tearDown() {
-        app.stop();
-    }
+//    @After
+//    public void tearDown() {
+//        app.stop();
+//    }
 }
 

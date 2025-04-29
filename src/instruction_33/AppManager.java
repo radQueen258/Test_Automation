@@ -1,6 +1,7 @@
 package instruction_33;
 
-import org.openqa.selenium.*;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class AppManager {
@@ -8,6 +9,9 @@ public class AppManager {
     private NavigationHelper navigation;
     private LoginHelper login;
     private NotesHelper notes;
+    private ProfileHelper profile;
+
+    private static ThreadLocal<AppManager> app = new ThreadLocal<>();
 
     public AppManager() {
         driver = new FirefoxDriver();
@@ -16,6 +20,16 @@ public class AppManager {
         navigation = new NavigationHelper(this, "https://alison.com/");
         login = new LoginHelper(this);
         notes = new NotesHelper(this);
+        profile = new ProfileHelper(this);
+    }
+
+    public static AppManager getInstance() {
+        if (app.get() == null) {
+            AppManager newInstance = new AppManager();
+            newInstance.navigation.openHomePage();
+            app.set(newInstance);
+        }
+        return app.get();
     }
 
     public WebDriver getDriver() {
@@ -34,8 +48,17 @@ public class AppManager {
         return notes;
     }
 
+    public ProfileHelper profile() { return profile; }
+
     public void stop() {
         driver.quit();
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        try {
+            driver.quit();
+        } catch (Exception ignored) {}
     }
 }
 
