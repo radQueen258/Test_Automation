@@ -1,0 +1,10 @@
+<Notes>
+    <NoteData>
+        <title>My Note 1</title>
+        <content>This is note content 1</content>
+    </NoteData>
+    <NoteData>
+        <title>My Note 2</title>
+        <content>This is note content 2</content>
+    </NoteData>
+</Notes>

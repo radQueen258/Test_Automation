@@ -23,5 +23,18 @@ public class HelperBase {
                         .equals("complete")
         );
     }
+
+    protected void acceptCookiesIfPresent() {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+            WebElement acceptBtn = wait.until(ExpectedConditions.elementToBeClickable(
+                    By.cssSelector(".message-component.message-button.no-children.focusable.sp_choice_type_11.last-focusable-el")
+            ));
+            acceptBtn.click();
+            Thread.sleep(1000);
+        } catch (TimeoutException | InterruptedException e) {
+        }
+    }
+
 }
 

@@ -8,8 +8,10 @@ public class AppManager {
     private WebDriver driver;
     private NavigationHelper navigation;
     private LoginHelper login;
-    private NotesHelper notes;
+//    private NotesHelper notes;
     private ProfileHelper profile;
+    private NoteHelper notes;
+
 
     private static ThreadLocal<AppManager> app = new ThreadLocal<>();
 
@@ -19,8 +21,10 @@ public class AppManager {
         driver.manage().window().setSize(new Dimension(1854, 1048));
         navigation = new NavigationHelper(this, "https://alison.com/");
         login = new LoginHelper(this);
-        notes = new NotesHelper(this);
+//        notes = new NotesHelper(this);
         profile = new ProfileHelper(this);
+        notes = new NoteHelper(this);
+
     }
 
     public static AppManager getInstance() {
@@ -44,11 +48,16 @@ public class AppManager {
         return login;
     }
 
-    public NotesHelper notes() {
+//    public NotesHelper notes() {
+//        return notes;
+//    }
+
+    public ProfileHelper profile() { return profile; }
+
+    public NoteHelper notes() {
         return notes;
     }
 
-    public ProfileHelper profile() { return profile; }
 
     public void stop() {
         driver.quit();

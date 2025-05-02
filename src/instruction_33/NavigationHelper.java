@@ -14,5 +14,6 @@ public class NavigationHelper extends HelperBase {
         driver.get(baseURL);
         driver.manage().window().setSize(new Dimension(1854, 1048));
         waitForPageToLoad();
+        acceptCookiesIfPresent();
     }
 }
