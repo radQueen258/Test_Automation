@@ -19,9 +19,9 @@ public class AppManager {
         driver = new FirefoxDriver();
         driver.manage().window().maximize();
         driver.manage().window().setSize(new Dimension(1854, 1048));
-        navigation = new NavigationHelper(this, "https://alison.com/");
+//        navigation = new NavigationHelper(this, "https://alison.com/");
+        navigation = new NavigationHelper(this, Settings.getBaseUrl());
         login = new LoginHelper(this);
-//        notes = new NotesHelper(this);
         profile = new ProfileHelper(this);
         notes = new NoteHelper(this);
 
@@ -47,10 +47,6 @@ public class AppManager {
     public LoginHelper login() {
         return login;
     }
-
-//    public NotesHelper notes() {
-//        return notes;
-//    }
 
     public ProfileHelper profile() { return profile; }
 

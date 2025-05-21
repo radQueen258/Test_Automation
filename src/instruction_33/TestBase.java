@@ -7,12 +7,9 @@ public class TestBase {
 
     @Before
     public void setUp() {
-        app = new AppManager();
+        app = AppManager.getInstance(); // this initializes driver and opens homepage
+        app.navigation().openHomePage();
     }
 
-//    @After
-//    public void tearDown() {
-//        app.stop();
-//    }
 }
 
