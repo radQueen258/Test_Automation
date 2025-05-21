@@ -9,7 +9,7 @@ public class LoginTests extends TestBase {
     public void loginWithValidData() {
 //        app.login().logout(); // Ensure clean state
         app.login().login(Settings.getLogin(), Settings.getPassword());
-        assertTrue("Should be logged in after valid login", app.login().isLoggedIn());
+        assertTrue(app.login().isLoggedIn());
     }
 
     @Test

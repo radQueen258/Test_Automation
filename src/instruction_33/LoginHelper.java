@@ -41,7 +41,7 @@ public class LoginHelper extends HelperBase {
     public void continueAfterLogin() {
         waitForPageToLoad();
         WebElement continueButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("ab-continue")));
-        continueButton.click();
+//        continueButton.click();
         waitForPageToLoad();
     }
 
@@ -64,7 +64,7 @@ public class LoginHelper extends HelperBase {
     public boolean isLoggedIn() {
         try {
             // If the avatar is visible, user is logged in
-            return driver.findElements(By.cssSelector(".head__user-img > .ng-tns-c479218729-0")).size() > 0;
+            return driver.findElements(By.id("ab-continue")).size() > 0;
         } catch (NoSuchElementException e) {
             return false;
         }
